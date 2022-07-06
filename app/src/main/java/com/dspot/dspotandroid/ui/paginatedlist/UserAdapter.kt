@@ -2,6 +2,7 @@ package com.dspot.dspotandroid.ui.paginatedlist
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -12,9 +13,16 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.dspot.dspotandroid.data.model.Result
 import com.dspot.dspotandroid.databinding.ItemUserBinding
 
-class UserAdapter : PagingDataAdapter<Result,
+class UserAdapter (var mOnItemClickListener: OnItemClickListener): PagingDataAdapter<Result,
         UserAdapter.ImageViewHolder>(diffCallback) {
 
+    interface OnItemClickListener {
+        fun onItemClick(view: View?, item: Result?, position: Int)
+    }
+
+    fun setOnItemClickListener(mItemClickListener: OnItemClickListener) {
+        this.mOnItemClickListener = mItemClickListener
+    }
 
     inner class ImageViewHolder(
         val binding: ItemUserBinding
@@ -61,5 +69,10 @@ class UserAdapter : PagingDataAdapter<Result,
                     .into(profileImage)
             }
         }
+
+        holder.binding.root.setOnClickListener{
+            mOnItemClickListener.onItemClick(it, currChar, position)
+        }
     }
+
 }

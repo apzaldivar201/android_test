@@ -12,7 +12,7 @@ import com.dspot.dspotandroid.data.model.Result
 import com.dspot.dspotandroid.databinding.ItemUserBinding
 
 class FiniteListAdapter(private val listener: UserItemListener) :
-    RecyclerView.Adapter<CharacterViewHolder>() {
+    RecyclerView.Adapter<UserViewHolder>() {
 
     interface UserItemListener {
         fun onClickedUser(item: Result)
@@ -26,19 +26,19 @@ class FiniteListAdapter(private val listener: UserItemListener) :
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val binding: ItemUserBinding =
             ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CharacterViewHolder(binding, listener)
+        return UserViewHolder(binding, listener)
     }
 
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: UserViewHolder, position: Int) =
         holder.bind(items[position])
 }
 
-class CharacterViewHolder(
+class UserViewHolder(
     private val itemBinding: ItemUserBinding,
     private val listener: FiniteListAdapter.UserItemListener
 ) : RecyclerView.ViewHolder(itemBinding.root),

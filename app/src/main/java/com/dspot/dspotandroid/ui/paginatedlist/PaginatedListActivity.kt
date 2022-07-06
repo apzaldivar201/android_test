@@ -1,25 +1,26 @@
 package com.dspot.dspotandroid.ui.paginatedlist
 
+import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dspot.dspotandroid.data.model.Result
 import com.dspot.dspotandroid.databinding.ActivityPaginatedListBinding
+import com.dspot.dspotandroid.ui.detailsview.UserDetailsActivity
 import com.dspot.dspotandroid.util.Functions
 import com.dspot.dspotandroid.util.ResourceLive
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class PaginatedListActivity : AppCompatActivity() {
+class PaginatedListActivity : AppCompatActivity(), UserAdapter.OnItemClickListener {
 
     private lateinit var binding: ActivityPaginatedListBinding
     private lateinit var userAdapter: UserAdapter
@@ -44,7 +45,7 @@ class PaginatedListActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        userAdapter = UserAdapter()
+        userAdapter = UserAdapter(this)
 
         binding.recyclerView.apply {
             adapter = userAdapter
@@ -116,7 +117,6 @@ class PaginatedListActivity : AppCompatActivity() {
         Functions.setSystemBarLight(this)
     }
 
-
     override fun onResume() {
         super.onResume()
         binding.shimmerViewContainer.startShimmer()
@@ -125,5 +125,11 @@ class PaginatedListActivity : AppCompatActivity() {
     override fun onPause() {
         binding.shimmerViewContainer.stopShimmer()
         super.onPause()
+    }
+
+    override fun onItemClick(view: View?, item: Result?, position: Int) {
+        val intent = Intent(this, UserDetailsActivity::class.java)
+        intent.putExtra("USER", item)
+        startActivity(intent)
     }
 }

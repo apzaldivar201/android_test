@@ -1,5 +1,6 @@
 package com.dspot.dspotandroid.ui.finitelist
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dspot.dspotandroid.data.model.Result
 import com.dspot.dspotandroid.databinding.ActivityFiniteUsersBinding
+import com.dspot.dspotandroid.ui.detailsview.UserDetailsActivity
 import com.dspot.dspotandroid.util.Functions
 import com.dspot.dspotandroid.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -101,7 +103,9 @@ class FiniteUsersActivity : AppCompatActivity(), FiniteListAdapter.UserItemListe
     }
 
     override fun onClickedUser(item: Result) {
-        Timber.d(item.name.first)
+        val intent = Intent(this, UserDetailsActivity::class.java)
+        intent.putExtra("USER", item)
+        startActivity(intent)
     }
 
     override fun onResume() {

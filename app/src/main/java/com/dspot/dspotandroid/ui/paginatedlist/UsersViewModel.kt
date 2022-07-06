@@ -23,9 +23,6 @@ constructor(
     val listData = Pager(PagingConfig(pageSize = 1)) {
         UserPagingSource(apiService, status)
     }.flow.cachedIn(viewModelScope)
-
-
-
 }
 
 

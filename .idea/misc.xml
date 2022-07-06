@@ -3,15 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/DESARROLLO/AndroidProjects/android_test/app/src/main/res/drawable/card_green.xml" value="0.1185" />
         <entry key="..\:/DESARROLLO/AndroidProjects/android_test/app/src/main/res/drawable/card_purple.xml" value="0.113" />
+        <entry key="..\:/DESARROLLO/AndroidProjects/android_test/app/src/main/res/drawable/card_red_round.xml" value="0.1185" />
         <entry key="..\:/DESARROLLO/AndroidProjects/android_test/app/src/main/res/drawable/ic_baseline_arrow_right_alt_24.xml" value="0.113" />
         <entry key="..\:/DESARROLLO/AndroidProjects/android_test/app/src/main/res/drawable/ic_list_svgrepo_com.xml" value="0.12" />
+        <entry key="..\:/DESARROLLO/AndroidProjects/android_test/app/src/main/res/drawable/ic_outline_directions_24.xml" value="0.1185" />
         <entry key="..\:/DESARROLLO/AndroidProjects/android_test/app/src/main/res/drawable/ic_user_list_thin_svgrepo_com.xml" value="0.12" />
         <entry key="..\:/DESARROLLO/AndroidProjects/android_test/app/src/main/res/drawable/item_circle.xml" value="0.12" />
         <entry key="..\:/DESARROLLO/AndroidProjects/android_test/app/src/main/res/drawable/item_placeholder_text.xml" value="0.12" />
         <entry key="..\:/DESARROLLO/AndroidProjects/android_test/app/src/main/res/layout/activity_finite_users.xml" value="0.2" />
         <entry key="..\:/DESARROLLO/AndroidProjects/android_test/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/DESARROLLO/AndroidProjects/android_test/app/src/main/res/layout/activity_paginated_list.xml" value="0.152" />
+        <entry key="..\:/DESARROLLO/AndroidProjects/android_test/app/src/main/res/layout/activity_user_details.xml" value="0.152" />
         <entry key="..\:/DESARROLLO/AndroidProjects/android_test/app/src/main/res/layout/data_plaaceholder_layout.xml" value="0.2" />
         <entry key="..\:/DESARROLLO/AndroidProjects/android_test/app/src/main/res/layout/home_item.xml" value="0.2" />
         <entry key="..\:/DESARROLLO/AndroidProjects/android_test/app/src/main/res/layout/item_user.xml" value="0.264" />

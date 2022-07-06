@@ -10,8 +10,4 @@ class UserRepository @Inject constructor(
     fun getUsers() = performGetOperation(
         networkCall = { remoteDataSource.getUsers() },
     )
-
-    fun getUsersPaginated(page: Int, results: Int) = performGetOperation(
-        networkCall = { remoteDataSource.getUsersPaging(page, results) },
-    )
 }

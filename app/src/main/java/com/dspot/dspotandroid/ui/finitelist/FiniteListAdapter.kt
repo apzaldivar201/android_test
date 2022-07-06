@@ -1,4 +1,4 @@
-package com.dspot.dspotandroid.ui.adapter
+package com.dspot.dspotandroid.ui.finitelist
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

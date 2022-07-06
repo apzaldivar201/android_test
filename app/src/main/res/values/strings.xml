@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DSpot Android</string>
+    <string name="profile_image">Profile image</string>
 </resources>

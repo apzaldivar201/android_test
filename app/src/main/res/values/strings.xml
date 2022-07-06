@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">DSpot Android</string>
     <string name="profile_image">Profile image</string>
+    <string name="fixed_user_list">Fixed Users List</string>
+    <string name="no_internet_image">no_internet_image</string>
+    <string name="something_went_wrong">Something wnt wrong</string>
+    <string name="image_back">str_image_back</string>
+    <string name="home">Home</string>
+    <string name="paginated_user_list">Paginated Users List</string>
+    <string name="user_details">User details</string>
+    <string name="profile_image_details">Profile image</string>
+    <string name="full_user_details">Full user details</string>
+    <string name="icon_address_image">Icon address image</string>
+    <string name="icon_nacionality">Icon nacionality</string>
+    <string name="icon_phone">Icon phone</string>
+    <string name="icon_dob">Icon dob</string>
+    <string name="icon_username">Icon username</string>
+    <string name="home_card_icon">Home Card Icon</string>
+    <string name="home_card_arrow">Home card arrow</string>
 </resources>

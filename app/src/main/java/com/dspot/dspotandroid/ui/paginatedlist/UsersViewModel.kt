@@ -6,7 +6,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.dspot.dspotandroid.data.network.ApiInterface
 import com.dspot.dspotandroid.data.paging.UserPagingSource
-import com.dspot.dspotandroid.util.ResourceLive
+import com.dspot.dspotandroid.util.ResourcePaging
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -18,7 +18,7 @@ constructor(
     private val apiService: ApiInterface,
 ) : ViewModel() {
 
-    val status = MutableLiveData(ResourceLive("",""))
+    val status = MutableLiveData(ResourcePaging("",""))
 
     val listData = Pager(PagingConfig(pageSize = 1)) {
         UserPagingSource(apiService, status)

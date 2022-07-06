@@ -8,6 +8,8 @@
     android:layout_marginHorizontal="8dp"
     android:layout_marginVertical="8dp"
     app:rippleColor="@color/white"
+    android:outlineAmbientShadowColor="#5B86E5"
+    android:outlineSpotShadowColor="#5B86E5"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"

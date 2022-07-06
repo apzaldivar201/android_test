@@ -85,6 +85,9 @@ dependencies {
     //Shimmer effect
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
+    //google services for maps
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+
     //Testing
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

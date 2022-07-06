@@ -16,6 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DSpotAndroid"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB_tX1dWWopM5Qn7sblZUkH4MmXWI2z25g" />
+
         <activity
             android:name=".ui.detailsview.UserDetailsActivity"
             android:configChanges="orientation"

@@ -19,6 +19,10 @@ data class Location(
     val state: String,
     @SerializedName("street")
     val street: Street,
-    @SerializedName("timezone")
-    val timezone: Timezone
-) : Parcelable
+
+) : Parcelable {
+
+    fun fullAddress(): String {
+        return "${street.name}, ${street.number}, $city, $state. $country, $postcode"
+    }
+}

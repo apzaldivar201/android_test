@@ -1,11 +1,8 @@
 package com.dspot.dspotandroid.ui.finitelist
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.view.WindowManager
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -13,10 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dspot.dspotandroid.data.model.Result
 import com.dspot.dspotandroid.databinding.ActivityFiniteUsersBinding
 import com.dspot.dspotandroid.ui.detailsview.UserDetailsActivity
-import com.dspot.dspotandroid.util.Functions
+import com.dspot.dspotandroid.util.Functions.Companion.handleSystemBar
 import com.dspot.dspotandroid.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class FiniteUsersActivity : AppCompatActivity(), FiniteListAdapter.UserItemListener {
@@ -27,7 +23,7 @@ class FiniteUsersActivity : AppCompatActivity(), FiniteListAdapter.UserItemListe
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        handleSystemBar()
+        handleSystemBar(window, this)
 
         binding = ActivityFiniteUsersBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -85,21 +81,6 @@ class FiniteUsersActivity : AppCompatActivity(), FiniteListAdapter.UserItemListe
                 }
             }
         }
-    }
-
-
-    private fun handleSystemBar() {
-        window.decorView.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-
-        Functions.setWindowFlag(
-            this,
-            WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-            false
-        )
-
-        window.statusBarColor = Color.TRANSPARENT
-        Functions.setSystemBarLight(this)
     }
 
     override fun onClickedUser(item: Result) {

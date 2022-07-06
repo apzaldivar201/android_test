@@ -4,6 +4,7 @@
     xmlns:shimmer="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".ui.finitelist.FiniteUsersActivity">
 
@@ -20,7 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
 
             <ImageButton
                 android:id="@+id/btnBack"
@@ -32,7 +34,8 @@
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_baseline_arrow_back_24"
-                app:tint="@color/black" />
+                app:tint="@color/black"
+                android:contentDescription="@string/image_back" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -40,7 +43,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/textheavy"
-                android:text="Fixed User list"
+                android:text="@string/fixed_user_list"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
         </LinearLayout>
@@ -89,13 +92,15 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:orientation="vertical"
-            android:translationY="-50dp">
+            android:translationY="-50dp"
+            tools:ignore="UselessParent">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/no_internet" />
+                android:src="@drawable/no_internet"
+                android:contentDescription="@string/no_internet_image" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -104,7 +109,7 @@
                 android:fontFamily="@font/textheavy"
                 android:gravity="center"
                 android:paddingHorizontal="16dp"
-                android:text="Something went wrong"
+                android:text="@string/something_went_wrong"
                 android:textSize="22sp" />
 
             <TextView
@@ -116,7 +121,6 @@
                 android:fontFamily="@font/textregular"
                 android:gravity="center"
                 android:paddingHorizontal="16dp"
-                android:text="Check your internet connection"
                 android:textSize="15sp" />
 
         </LinearLayout>

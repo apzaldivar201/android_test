@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.detailsview.UserDetailsActivity">
 
     <RelativeLayout
@@ -21,7 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
 
             <ImageButton
                 android:id="@+id/btnBack"
@@ -29,6 +31,7 @@
                 android:layout_height="48dp"
                 android:background="@color/transparent"
                 android:clickable="true"
+                android:contentDescription="@string/image_back"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="centerInside"
@@ -41,7 +44,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/textheavy"
-                android:text="User details"
+                android:text="@string/user_details"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
         </LinearLayout>
@@ -50,6 +53,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header">
@@ -71,17 +75,27 @@
                     android:layout_height="wrap_content"
                     android:padding="16dp">
 
-                    <ImageView
-                        android:id="@+id/profile_image"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cvImage"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:layout_centerVertical="true" />
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="0dp">
+
+                        <ImageView
+                            android:id="@+id/profile_image"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_centerVertical="true"
+                            android:contentDescription="@string/profile_image_details" />
+                    </androidx.cardview.widget.CardView>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_toEndOf="@id/profile_image"
+                        android:layout_toEndOf="@id/cvImage"
                         android:orientation="vertical"
                         android:padding="16dp">
 
@@ -90,7 +104,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/textheavy"
-                            android:text="Mr Adrian P'erez Zaldivar"
                             android:textColor="@color/black"
                             android:textSize="18sp" />
 
@@ -100,7 +113,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:fontFamily="@font/textregular"
-                            android:text="+58929076"
                             android:textColor="@color/black"
                             android:textSize="15sp" />
 
@@ -110,13 +122,29 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:fontFamily="@font/textregular"
-                            android:text="apzaldivar@nauta.cu"
                             android:textColor="@color/black"
                             android:textSize="15sp" />
                     </LinearLayout>
 
                 </RelativeLayout>
 
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="3dp">
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:context="com.dspot.dspotandroid.ui.detailsview.UserDetailsActivity" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -138,7 +166,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/textheavy"
-                        android:text="Full user details" />
+                        android:text="@string/full_user_details" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -156,6 +184,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
                                 android:layout_gravity="center"
+                                android:contentDescription="@string/icon_address_image"
                                 android:src="@drawable/ic_outline_directions_24"
                                 app:tint="@color/white" />
 
@@ -169,33 +198,14 @@
 
                             <TextView
                                 android:id="@+id/tv_address"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
                                 android:layout_centerVertical="true"
                                 android:layout_gravity="center"
                                 android:layout_marginStart="16dp"
-                                android:layout_marginEnd="8dp"
-                                android:layout_toStartOf="@+id/tv_map"
-                                android:fontFamily="@font/textregular"
-                                android:text="Maryland, 12433" />
+                                android:fontFamily="@font/textregular" />
 
-                            <TextView
-                                android:id="@+id/tv_map"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerInParent="true"
-                                android:layout_gravity="center"
-                                android:layout_marginStart="16dp"
-                                android:background="@drawable/card_red_round"
-                                android:fontFamily="@font/textheavy"
-                                android:paddingStart="8dp"
-                                android:paddingTop="1dp"
-                                android:paddingEnd="8dp"
-                                android:paddingBottom="2dp"
-                                android:text="View in map"
-                                android:textColor="@color/white" />
                         </RelativeLayout>
                     </LinearLayout>
 
@@ -215,6 +225,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
                                 android:layout_gravity="center"
+                                android:contentDescription="@string/icon_nacionality"
                                 android:src="@drawable/ic_outline_flag_24"
                                 app:tint="@color/white" />
 
@@ -226,8 +237,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="16dp"
-                            android:fontFamily="@font/textregular"
-                            android:text="Britain" />
+                            android:fontFamily="@font/textregular" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -246,6 +256,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
                                 android:layout_gravity="center"
+                                android:contentDescription="@string/icon_phone"
                                 android:src="@drawable/ic_outline_local_phone_24"
                                 app:tint="@color/white" />
 
@@ -257,8 +268,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="16dp"
-                            android:fontFamily="@font/textregular"
-                            android:text="Britain" />
+                            android:fontFamily="@font/textregular" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -277,6 +287,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
                                 android:layout_gravity="center"
+                                android:contentDescription="@string/icon_dob"
                                 android:src="@drawable/ic_outline_date_range_24"
                                 app:tint="@color/white" />
                         </RelativeLayout>
@@ -287,8 +298,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="16dp"
-                            android:fontFamily="@font/textregular"
-                            android:text="Birth date" />
+                            android:fontFamily="@font/textregular" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -307,6 +317,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
                                 android:layout_gravity="center"
+                                android:contentDescription="@string/icon_username"
                                 android:src="@drawable/ic_outline_person_outline_24"
                                 app:tint="@color/white" />
                         </RelativeLayout>
@@ -317,12 +328,11 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="16dp"
-                            android:fontFamily="@font/textregular"
-                            android:text="username" />
+                            android:fontFamily="@font/textregular" />
                     </LinearLayout>
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

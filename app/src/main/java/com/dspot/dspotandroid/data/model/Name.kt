@@ -13,4 +13,9 @@ data class Name(
     val last: String,
     @SerializedName("title")
     val title: String
-) : Parcelable
+) : Parcelable {
+
+    fun fullName(): String {
+        return "$title $first $last"
+    }
+}

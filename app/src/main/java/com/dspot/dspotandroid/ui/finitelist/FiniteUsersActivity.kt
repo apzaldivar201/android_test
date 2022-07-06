@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dspot.dspotandroid.data.model.Result
 import com.dspot.dspotandroid.databinding.ActivityFiniteUsersBinding
-import com.dspot.dspotandroid.ui.adapter.FiniteListAdapter
 import com.dspot.dspotandroid.util.Functions
 import com.dspot.dspotandroid.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,18 +63,24 @@ class FiniteUsersActivity : AppCompatActivity(), FiniteListAdapter.UserItemListe
         viewModel.users.observe(this) {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
-                    binding.progressBar.visibility = View.GONE
+                    binding.layoutError.visibility = View.GONE
+                    binding.shimmerViewContainer.stopShimmer()
+                    binding.shimmerViewContainer.visibility = View.GONE
                     if (!it.data?.results.isNullOrEmpty()) userAdapter.setItems(it.data!!.results)
                 }
 
                 Resource.Status.ERROR -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                    Toast.makeText(binding.root.context, it.message, Toast.LENGTH_SHORT).show()
+                    binding.shimmerViewContainer.stopShimmer()
+                    binding.shimmerViewContainer.visibility = View.GONE
+                    binding.errorMsg.text = it.message
+                    binding.layoutError.visibility = View.VISIBLE
                 }
 
-                Resource.Status.LOADING ->
-                    binding.progressBar.visibility = View.VISIBLE
-
+                Resource.Status.LOADING -> {
+                    binding.layoutError.visibility = View.GONE
+                    binding.shimmerViewContainer.visibility = View.VISIBLE
+                    binding.shimmerViewContainer.startShimmer()
+                }
             }
         }
     }
@@ -97,5 +102,15 @@ class FiniteUsersActivity : AppCompatActivity(), FiniteListAdapter.UserItemListe
 
     override fun onClickedUser(item: Result) {
         Timber.d(item.name.first)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.shimmerViewContainer.startShimmer()
+    }
+
+    override fun onPause() {
+        binding.shimmerViewContainer.stopShimmer()
+        super.onPause()
     }
 }

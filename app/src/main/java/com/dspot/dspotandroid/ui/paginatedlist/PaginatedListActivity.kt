@@ -3,6 +3,7 @@ package com.dspot.dspotandroid.ui.paginatedlist
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dspot.dspotandroid.databinding.ActivityPaginatedListBinding
 import com.dspot.dspotandroid.util.Functions
+import com.dspot.dspotandroid.util.ResourceLive
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -62,13 +64,41 @@ class PaginatedListActivity : AppCompatActivity() {
     private fun loadData() {
         lifecycleScope.launch {
             viewModel.listData.collect {
+                binding.shimmerViewContainer.stopShimmer()
+                binding.shimmerViewContainer.visibility = View.GONE
                 userAdapter.submitData(it)
             }
         }
 
-        viewModel.hasError.observe(this) {
-            Toast.makeText(binding.root.context, "Error loading data!!", LENGTH_SHORT)
-                .show()
+        viewModel.status.observe(this) {
+            val statusA: ResourceLive = it
+            when (statusA.status) {
+                "LOADING" -> {
+                    binding.shimmerViewContainer.startShimmer()
+                    binding.shimmerViewContainer.visibility = View.VISIBLE
+                    binding.progressHorizontal.visibility = View.GONE
+                    Log.wtf("LOADING", "LOADING")
+                }
+                "LOADING_MORE" -> {
+                    binding.progressHorizontal.visibility = View.VISIBLE
+                    Log.wtf("LOADING_MORE", "LOADING_MORE")
+                }
+                "SUCCESS" -> {
+                    binding.shimmerViewContainer.stopShimmer()
+                    binding.shimmerViewContainer.visibility = View.GONE
+                    binding.progressHorizontal.visibility = View.GONE
+                    binding.layoutError.visibility = View.GONE
+                    Log.wtf("SUCCESS", "SUCCESS")
+                }
+                "ERROR" -> {
+                    binding.shimmerViewContainer.stopShimmer()
+                    binding.shimmerViewContainer.visibility = View.GONE
+                    binding.layoutError.visibility = View.VISIBLE
+                    binding.progressHorizontal.visibility = View.GONE
+                    binding.errorMsg.text = statusA.message
+                    Log.wtf("ERROR", statusA.message)
+                }
+            }
         }
     }
 
@@ -84,5 +114,16 @@ class PaginatedListActivity : AppCompatActivity() {
 
         window.statusBarColor = Color.TRANSPARENT
         Functions.setSystemBarLight(this)
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        binding.shimmerViewContainer.startShimmer()
+    }
+
+    override fun onPause() {
+        binding.shimmerViewContainer.stopShimmer()
+        super.onPause()
     }
 }

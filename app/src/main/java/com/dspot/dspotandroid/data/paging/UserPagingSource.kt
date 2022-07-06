@@ -1,18 +1,16 @@
 package com.dspot.dspotandroid.data.paging
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.dspot.dspotandroid.data.model.Result
 import com.dspot.dspotandroid.data.network.ApiInterface
 import com.dspot.dspotandroid.util.Constants.PAGE_CANT
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import com.dspot.dspotandroid.util.ResourceLive
 
 class UserPagingSource(
     private val apiService: ApiInterface,
-    private var hasError: MutableLiveData<Boolean>
+    private val status: MutableLiveData<ResourceLive>
 ) : PagingSource<Int, Result>() {
 
     override fun getRefreshKey(state: PagingState<Int, Result>): Int? {
@@ -24,19 +22,25 @@ class UserPagingSource(
 
         return try {
             val currentPage = params.key ?: 1
+
+            if (currentPage == 1) {
+                status.postValue(ResourceLive("LOADING", ""))
+            } else {
+                status.postValue(ResourceLive("LOADING_MORE", ""))
+            }
+
             val response = apiService.getAllUsersPaging(currentPage, PAGE_CANT)
             val responseData = mutableListOf<Result>()
             val data = response.body()?.results ?: emptyList()
             responseData.addAll(data)
-            hasError.postValue(false)
+            status.postValue(ResourceLive("SUCCESS", ""))
             LoadResult.Page(
                 data = responseData,
                 prevKey = if (currentPage == 1) null else -1,
                 nextKey = currentPage.plus(1)
             )
         } catch (e: Exception) {
-            Log.wtf("Error", e.message)
-            hasError.postValue(true)
+            status.postValue(ResourceLive("ERROR", e.message))
             LoadResult.Error(e)
         }
     }

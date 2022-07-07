@@ -31,7 +31,7 @@ internal class RetrofitApiInterfaceTest {
         gson = Gson()
         mockWebServer = MockWebServer()
         apiService = Retrofit.Builder()
-            .baseUrl(mockWebServer.url(BASE_URL))
+            .baseUrl(mockWebServer.url("/"))
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build().create(ApiInterface::class.java)
     }

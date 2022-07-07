@@ -38,6 +38,40 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11
     }
+
+    signingConfigs {
+        debug {
+            keyAlias 'key_develop'
+            keyPassword 'DSpotTest_2022'
+            storeFile file('develop.jks')
+            storePassword 'DSpotTest_2022'
+        }
+
+        release {
+            keyAlias 'key_release'
+            keyPassword 'DSpotTest_2022'
+            storeFile file('release.jks')
+            storePassword 'DSpotTest_2022'
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            debuggable false
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
 }
 
 dependencies {

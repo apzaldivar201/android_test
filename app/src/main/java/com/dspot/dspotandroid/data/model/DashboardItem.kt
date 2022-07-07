@@ -1,5 +1,7 @@
 package com.dspot.dspotandroid.data.model
 
+import java.util.*
+
 data class DashboardItem(
     val id: Int,
     val title: String,

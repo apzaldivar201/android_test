@@ -25,10 +25,10 @@ object AppModule {
     fun provideRetrofitInstance(BASE_URL: String): ApiInterface {
         val okHttpClient = OkHttpClient().newBuilder()
 
-        okHttpClient.callTimeout(5, TimeUnit.SECONDS)
-        okHttpClient.connectTimeout(5, TimeUnit.SECONDS)
-        okHttpClient.readTimeout(5, TimeUnit.SECONDS)
-        okHttpClient.writeTimeout(5, TimeUnit.SECONDS)
+        okHttpClient.callTimeout(10, TimeUnit.SECONDS)
+        okHttpClient.connectTimeout(10, TimeUnit.SECONDS)
+        okHttpClient.readTimeout(10, TimeUnit.SECONDS)
+        okHttpClient.writeTimeout(10, TimeUnit.SECONDS)
         okHttpClient.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         okHttpClient.build()
 

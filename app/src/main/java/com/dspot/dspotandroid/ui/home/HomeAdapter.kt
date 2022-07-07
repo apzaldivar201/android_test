@@ -90,22 +90,6 @@ class HomeViewHolder(
                 params.setMargins(8.toPx(), 30.toPx(), 16.toPx(), 8.toPx())
                 itemBinding.root.layoutParams = params
             }
-            2 -> {
-                val params = LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-                params.setMargins(8.toPx(), 8.toPx(), 16.toPx(), 45.toPx())
-                itemBinding.root.layoutParams = params
-            }
-            3 -> {
-                val params = LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-                params.setMargins(16.toPx(), 8.toPx(), 8.toPx(), 45.toPx())
-                itemBinding.root.layoutParams = params
-            }
         }
     }
 

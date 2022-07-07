@@ -13,7 +13,7 @@ import java.util.*
 
 sealed class Functions {
     companion object {
-        fun setWindowFlag(activity: Activity, bits: Int, on: Boolean) {
+        private fun setWindowFlag(activity: Activity, bits: Int, on: Boolean) {
             val win = activity.window
             val winParams = win.attributes
             if (on) {
@@ -24,7 +24,7 @@ sealed class Functions {
             win.attributes = winParams
         }
 
-        fun setSystemBarLight(act: Activity) {
+        private fun setSystemBarLight(act: Activity) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 val view = act.findViewById<View>(android.R.id.content)
                 var flags = view.systemUiVisibility

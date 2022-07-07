@@ -81,7 +81,7 @@ class UserDetailsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val cameraPosition = CameraPosition.builder()
             .target(marker)
-            .zoom(11f)
+            .zoom(5f)
             .bearing(90f)
             .tilt(30f)
             .build()
